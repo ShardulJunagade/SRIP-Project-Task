@@ -1,20 +1,18 @@
 import torch
 from ultralytics import YOLO
-import numpy as np
-import matplotlib.pyplot as plt
 import os
 
 def set_seed(seed=42):
-    np.random.seed(seed)
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 set_seed()
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
 print('Using device:', device)
 
 image_size = 416
+meters_per_pixel = 0.31  # meters per pixel
 
 # Create YAML content with absolute paths
 base_path = os.path.abspath('./split_data')
@@ -33,16 +31,17 @@ print(yaml_content)
 
 
 # Use any model from Ultralytics like YOLO to train the object detection model.
-model = YOLO("yolo12m.pt")
+model = YOLO("yolo12x.pt")
 
 results = model.train(
     data="split_data/data.yaml",
-    epochs=70,
+    epochs=100,
     imgsz=416,
     batch=100,
     device=device,
     project="models",
-    name="yolo12m",
+    name="yolo12x",
 )
 
-model.save("yolo12m_e70_b100.pt")
+# the best model on valiation set is saved at: models/yolo12x/weights/best.pt
+# the last model is saved at: models/yolo12x/weights/last.pt
