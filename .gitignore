@@ -1,9 +1,8 @@
 data/
 split_data/
-SRIP/
-models/
-yolo11n.pt
-yolo12n.pt
+models/yolo12m/
+meta/
+weights/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
