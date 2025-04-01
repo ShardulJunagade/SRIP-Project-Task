@@ -25,6 +25,30 @@ This project aims to build a solar panel detector using the YOLOv12 model. The d
 
 
 
+## 🛠️ Setup:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/solar-panel-detector.git
+   cd solar-panel-detector
+   ```
+
+2. Create a virtual environment and install dependencies:
+   ```bash
+   pip install uv
+   uv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   uv pip install -r requirements.txt
+   ```
+
+3. Download the dataset:
+   - Images (31 cm native resolution, resized to 416x416): [Google Drive](https://drive.google.com/drive/folders/13QfMQ-7OdWKw-LR8DmypKwSHtI0Hk2wh?usp=sharing)
+   - Labels and README: [Google Drive](https://drive.google.com/drive/folders/13QfMQ-7OdWKwSHtI0Hk2wh?usp=sharing)
+
+4. Split the dataset into training, validation, and test sets:
+   Run the data splitting script in the Jupyter notebook to create the `split_data` directory.
+
+
 ## Author
 
 Shardul Junagade
